@@ -9,7 +9,7 @@ function Todos() {
 
   useEffect(() => {
     // Fetch todos from the backend
-    axios.get("http://localhost:8000/todos")
+    axios.get("https://my-todos-1.onrender.com/todos")
       .then(response => setTodosList(response.data))
       .catch(error => console.log(error));
   }, []);
@@ -25,7 +25,7 @@ function Todos() {
   const addTodo = (e) => {
     e.preventDefault();
     if (inputValue.trim() && inputDescription.trim()) {
-      axios.post("http://localhost:8000/todos", {
+      axios.post("https://my-todos-1.onrender.com/todos", {
         value: inputValue.trim(),
         description: inputDescription.trim(),
         isDone: false,
@@ -42,7 +42,7 @@ function Todos() {
   };
 
   const deleteTodo = (deleteItem) => {
-    axios.delete(`http://localhost:8000/todos/${deleteItem._id}`)
+    axios.delete(`https://my-todos-1.onrender.com/todos/${deleteItem._id}`)
       .then(() => {
         setTodosList(todosList.filter(todo => todo._id !== deleteItem._id));
       })
@@ -50,7 +50,7 @@ function Todos() {
   };
 
   const handleTodoDone = (doneTodo) => {
-    axios.put(`http://localhost:8000/todos/${doneTodo._id}`, {
+    axios.put(`https://my-todos-1.onrender.com/todos/${doneTodo._id}`, {
       ...doneTodo,
       isDone: !doneTodo.isDone,
     })
@@ -66,7 +66,7 @@ function Todos() {
 
   const editTodoSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:8000/todos/${editTodo._id}`, editTodo)
+    axios.put(`https://my-todos-1.onrender.com/todos/${editTodo._id}`, editTodo)
       .then(response => {
         setTodosList(todosList.map(todo => todo._id === editTodo._id ? response.data : todo));
         setEditTodo({});
